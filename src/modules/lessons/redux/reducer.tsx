@@ -1,15 +1,17 @@
+
+import {actionTypes} from "./types"
 const initialState = {
-  user: {},
+  lessonsData: {},
 };
 
 export default function auth(state = initialState, action: any) {
-  return state;
-  //   switch (action.type) {
-  //     case TYPES.GET_NOTIFICATION_LIST:
-  //       return {
-  //         ...state,
-  //       };
-  //     default:
-  //       return state;
-  //   }
+    switch (action.type) {
+      case actionTypes.get_lessons_data_response:
+        return {
+          ...state,
+          lessonsData:action.payload
+        };
+      default:
+        return state;
+    }
 }
