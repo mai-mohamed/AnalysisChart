@@ -1,7 +1,7 @@
 
 import {actionTypes} from "./types"
 const initialState = {
-  lessonsData: {},
+  lessonsData: [],
 };
 
 export default function auth(state = initialState, action: any) {
