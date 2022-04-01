@@ -1,9 +1,4 @@
 import ReactDOM from 'react-dom'
-import Lessons from './modules/lessons/lessons';
-import "./assets/scss/main.scss"
+import App from "./modules/App";
 
-ReactDOM.render(
-    <Lessons/>,
-  document.getElementById('root')
-);
-
+ReactDOM.render(<App />, document.getElementById("root"));

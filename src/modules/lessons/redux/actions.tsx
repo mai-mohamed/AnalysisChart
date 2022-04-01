@@ -1,8 +1,7 @@
 
-import { actionTypes ,ILessonsData} from "./types";
+import { actionTypes } from "./types";
 
-export const getLessonsData = (payload:ILessonsData) => ({
+export const getLessonsData = () => ({
   type: actionTypes.get_lessons_data,
-  payload,
 });
 
