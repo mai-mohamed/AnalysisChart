@@ -7,13 +7,15 @@ import {getLessonsData} from "./redux/actions";
 const Lessons:FC=()=>{
     const dispatch=useDispatch();
     const lessons =useSelector((state:ILessons)=>state.lessons)
-    console.log(lessons)
     useEffect(()=>{
         dispatch(getLessonsData())
     },[])
     return(
         <div className="lessons-wrapper">
-            <Charts/>
+           
+            <Charts 
+             //@ts-ignore 
+            data={lessons.lessonsData}/>
         </div>
     )
 }
