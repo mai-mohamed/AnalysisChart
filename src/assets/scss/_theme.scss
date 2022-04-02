@@ -1,6 +1,10 @@
+@import "./vars";
 
 .dark-mode{
-    background-color: black;
+    background-color:$darkBlack;
+    label{
+        color:$white
+    }
 }
 .light-mode{
     background-color: white;

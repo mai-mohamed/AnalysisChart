@@ -13,8 +13,10 @@ const App:FC=()=>{
     return(
         <Provider store={store}>
         <div className={isDarkMode?"dark-mode":"light-mode"}>
-            <DarkMode handleDarkModeChange={handleDarkModeChange}/>
+            <div className="container">
+            <DarkMode handleDarkModeChange={handleDarkModeChange} isDark={isDarkMode}/>
             <Lessons/>
+            </div>
         </div>
         </Provider>
     )

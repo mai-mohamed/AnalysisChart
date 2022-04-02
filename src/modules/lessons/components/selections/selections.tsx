@@ -6,9 +6,9 @@ import { getUniqueSet, strArrToObjArr } from "../../../../shared/utils/utils";
 
 type IProps = {
   data: ILessons[];
-  handleSchoolChange?: any
-  handleCampChange?:any
-  handleCountryChange?:any
+  handleSchoolChange?: any;
+  handleCampChange?: any;
+  handleCountryChange?: any;
 };
 
 const Selections: FC<IProps> = (props: IProps) => {
@@ -27,24 +27,31 @@ const Selections: FC<IProps> = (props: IProps) => {
     setSchoolOptions(strArrToObjArr(schoolSet));
   }, [props.data]);
 
-
   return (
-    <div>
-      <InputSelect
-        label="Select country"
-        handleSelectChange={(e)=>props.handleCountryChange(e)}
-        options={countryOptions}
-      />
-      <InputSelect
-        label="Select camp"
-        handleSelectChange={(e)=>props.handleCampChange(e)}
-        options={campOptions}
-      />
-      <InputSelect
-        label="Select school"
-        handleSelectChange={(e)=>props.handleSchoolChange(e)}
-        options={schoolOptions}
-      />
+    <div className="row my-5">
+      <div className="col">
+        <InputSelect
+          label="Select country"
+          handleSelectChange={(e) => props.handleCountryChange(e)}
+          options={countryOptions}
+        />
+      </div>
+
+      <div className="col">
+        <InputSelect
+          label="Select camp"
+          handleSelectChange={(e) => props.handleCampChange(e)}
+          options={campOptions}
+        />
+      </div>
+
+      <div className="col">
+        <InputSelect
+          label="Select school"
+          handleSelectChange={(e) => props.handleSchoolChange(e)}
+          options={schoolOptions}
+        />
+      </div>
     </div>
   );
 };
