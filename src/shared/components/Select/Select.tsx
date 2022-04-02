@@ -1,7 +1,8 @@
 import { FC } from "react";
 import Select from "react-select";
+import {selectOptions} from "../../models/selectOptions.model";
 type IProps = {
-  options: any;
+  options: selectOptions[];
   label?: string;
   errorMsg?: string;
   placeholder?: string;
