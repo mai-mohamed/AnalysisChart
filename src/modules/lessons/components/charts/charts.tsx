@@ -11,7 +11,7 @@ import {
   Legend,
 } from "chart.js";
 import { ILessons } from "../../../../shared/models/lessons.model";
-import {monthsArr} from "../../../../shared/utils/constants";
+import { monthsArr } from "../../../../shared/utils/constants";
 
 ChartJS.register(
   CategoryScale,
@@ -25,30 +25,34 @@ ChartJS.register(
 
 type IProps = {
   data: ILessons[];
-  school?:string
-  camp?:string
+  school?: string;
+  camp?: string;
+  country?: string;
 };
 
 const Charts: FC<IProps> = (props: IProps) => {
-    const [lessons,setLessons]=useState<any>()
+  const [lessons, setLessons] = useState<any>();
   useEffect(() => {
-
     const yAxis = props.data.filter((row) => {
-      return (row.school == props.school && row.camp == props.camp)
+      return (
+        row.school == props.school &&
+        row.camp == props.camp &&
+        row.country == props.country
+      );
     });
 
-    const lessonsArr = yAxis.map( (row)=> {
-        return row.lessons;
+    const lessonsArr = yAxis.map((row) => {
+      return row.lessons;
     });
-    setLessons(lessonsArr)
-  }, [props.data,props.school,props.camp]);
+    setLessons(lessonsArr);
+  }, [props.data, props.school, props.camp,props.country]);
 
   const chartData = {
-    labels:monthsArr,
+    labels: monthsArr,
     datasets: [
       {
-        label:props.school,
-        data:lessons,
+        label: props.school,
+        data: lessons,
         fill: false,
         backgroundColor: "rgba(75,192,192,0.2)",
         borderColor: "rgba(75,192,192,1)",

@@ -8,6 +8,7 @@ type IProps = {
   data: ILessons[];
   handleSchoolChange?: any
   handleCampChange?:any
+  handleCountryChange?:any
 };
 
 const Selections: FC<IProps> = (props: IProps) => {
@@ -31,7 +32,7 @@ const Selections: FC<IProps> = (props: IProps) => {
     <div>
       <InputSelect
         label="Select country"
-        handleSelectChange={(e)=>props.handleCampChange(e)}
+        handleSelectChange={(e)=>props.handleCountryChange(e)}
         options={countryOptions}
       />
       <InputSelect

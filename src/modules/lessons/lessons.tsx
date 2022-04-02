@@ -9,6 +9,7 @@ import {getLessonsData} from "./redux/actions";
 const Lessons:FC=()=>{
     const [selectedSchool,setSelectedSchool]=useState<string>()
     const [selectedCamp,setSelectedCamp]=useState<string>()
+    const [selectedCountry,setSelectedCountry]=useState<string>()
     const dispatch=useDispatch();
     const lessons =useSelector((state:ILessons)=>state.lessons)
     useEffect(()=>{
@@ -20,6 +21,9 @@ const Lessons:FC=()=>{
       const handleCampChange= (e: selectOptions) => {
         setSelectedCamp(e.label)
       };
+      const handleCountryChange= (e: selectOptions) => {
+        setSelectedCountry(e.label)
+      };
 
     
     return(
@@ -27,12 +31,14 @@ const Lessons:FC=()=>{
            <Selections  //@ts-ignore  
             data={lessons.lessonsData} 
             handleSchoolChange={handleSchoolChange} 
-            handleCampChange={handleCampChange}/>
+            handleCampChange={handleCampChange}
+            handleCountryChange={handleCountryChange}/>
             <Charts 
              //@ts-ignore 
             data={lessons.lessonsData}
             school={selectedSchool}
             camp={selectedCamp}
+            country={selectedCountry}
             />
         </div>
     )
