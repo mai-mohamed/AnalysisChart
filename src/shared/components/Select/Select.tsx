@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { ChangeEvent, FC } from "react";
 import Select from "react-select";
 import {selectOptions} from "../../models/selectOptions.model";
 type IProps = {
@@ -7,7 +7,7 @@ type IProps = {
   errorMsg?: string;
   placeholder?: string;
   asterick?: boolean;
-  handleSelectChange: () => void;
+  handleSelectChange: (e: ChangeEvent<HTMLSelectElement>|any) => void;
 };
 
 const InputSelect: FC<IProps> = (props: IProps) => {
@@ -19,7 +19,7 @@ const InputSelect: FC<IProps> = (props: IProps) => {
       <Select
         options={props.options}
         placeholder={props.placeholder}
-        onChange={props.handleSelectChange}
+        onChange={(e)=>props.handleSelectChange(e)}
       />
       {props.errorMsg && (
         <small>{props.errorMsg}</small>

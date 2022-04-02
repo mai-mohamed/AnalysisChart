@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { ChangeEvent, FC, useEffect, useState } from "react";
 import { ILessons } from "../../../../shared/models/lessons.model";
 import InputSelect from "../../../../shared/components/Select/Select";
 import { selectOptions } from "../../../../shared/models/selectOptions.model";
@@ -26,12 +26,12 @@ const Selections: FC<IProps> = (props: IProps) => {
 
   }, [props.data]);
 
-  const handleSelectChange = () => {};
+  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {console.log(e)};
   return (
     <div>
       <InputSelect
         label="Select country"
-        handleSelectChange={handleSelectChange}
+        handleSelectChange={(e)=>handleSelectChange(e)}
         options={countryOptions}
       />
        <InputSelect
