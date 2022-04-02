@@ -25,6 +25,8 @@ ChartJS.register(
 
 type IProps = {
   data: ILessons[];
+  school?:string
+  camp?:string
 };
 
 const Charts: FC<IProps> = (props: IProps) => {
@@ -32,20 +34,20 @@ const Charts: FC<IProps> = (props: IProps) => {
   useEffect(() => {
 
     const yAxis = props.data.filter((row) => {
-      return (row.school == "Greenlight" && row.camp == "Kakuma")
+      return (row.school == props.school && row.camp == props.camp)
     });
 
     const lessonsArr = yAxis.map( (row)=> {
         return row.lessons;
     });
     setLessons(lessonsArr)
-  }, [props.data]);
+  }, [props.data,props.school,props.camp]);
 
   const chartData = {
     labels:monthsArr,
     datasets: [
       {
-        label: "greenLight school",
+        label:props.school,
         data:lessons,
         fill: false,
         backgroundColor: "rgba(75,192,192,0.2)",
@@ -55,15 +57,6 @@ const Charts: FC<IProps> = (props: IProps) => {
   };
   return (
     <div>
-      {/* 
-      assume that we will draw a linear chart with the following data:
-      greenLight school
-      kenya country
-      kakuma camp
-
-      by default we have the x axis
-      we need y axis data
-       */}
       <Line data={chartData} />
     </div>
   );

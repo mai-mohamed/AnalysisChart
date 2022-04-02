@@ -2,10 +2,12 @@ import { ChangeEvent, FC, useEffect, useState } from "react";
 import { ILessons } from "../../../../shared/models/lessons.model";
 import InputSelect from "../../../../shared/components/Select/Select";
 import { selectOptions } from "../../../../shared/models/selectOptions.model";
-import {getUniqueSet, strArrToObjArr} from "../../../../shared/utils/utils";
+import { getUniqueSet, strArrToObjArr } from "../../../../shared/utils/utils";
 
 type IProps = {
   data: ILessons[];
+  handleSchoolChange?: any
+  handleCampChange?:any
 };
 
 const Selections: FC<IProps> = (props: IProps) => {
@@ -13,7 +15,6 @@ const Selections: FC<IProps> = (props: IProps) => {
   const [campOptions, setCampOptions] = useState<selectOptions[]>([]);
   const [schoolOptions, setSchoolOptions] = useState<selectOptions[]>([]);
 
-  
   useEffect(() => {
     const countrySet: string[] = getUniqueSet(props.data, "country");
     setCountryOptions(strArrToObjArr(countrySet));
@@ -23,25 +24,24 @@ const Selections: FC<IProps> = (props: IProps) => {
 
     const schoolSet: string[] = getUniqueSet(props.data, "school");
     setSchoolOptions(strArrToObjArr(schoolSet));
-
   }, [props.data]);
 
-  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {console.log(e)};
+
   return (
     <div>
       <InputSelect
         label="Select country"
-        handleSelectChange={(e)=>handleSelectChange(e)}
+        handleSelectChange={(e)=>props.handleCampChange(e)}
         options={countryOptions}
       />
-       <InputSelect
+      <InputSelect
         label="Select camp"
-        handleSelectChange={handleSelectChange}
+        handleSelectChange={(e)=>props.handleCampChange(e)}
         options={campOptions}
       />
-       <InputSelect
+      <InputSelect
         label="Select school"
-        handleSelectChange={handleSelectChange}
+        handleSelectChange={(e)=>props.handleSchoolChange(e)}
         options={schoolOptions}
       />
     </div>
