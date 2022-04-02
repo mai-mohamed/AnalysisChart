@@ -11,6 +11,7 @@ import {
   Legend,
 } from "chart.js";
 import { ILessons } from "../../../../shared/models/lessons.model";
+import {monthsArr} from "../../../../shared/utils/constants";
 
 ChartJS.register(
   CategoryScale,
@@ -29,7 +30,7 @@ type IProps = {
 const Charts: FC<IProps> = (props: IProps) => {
     const [lessons,setLessons]=useState<any>()
   useEffect(() => {
-      console.log(props.data)
+
     const yAxis = props.data.filter((row) => {
       return (row.school == "Greenlight" && row.camp == "Kakuma")
     });
@@ -41,7 +42,7 @@ const Charts: FC<IProps> = (props: IProps) => {
   }, [props.data]);
 
   const chartData = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    labels:monthsArr,
     datasets: [
       {
         label: "greenLight school",
