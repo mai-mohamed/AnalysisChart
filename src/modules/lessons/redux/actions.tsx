@@ -1,5 +1,6 @@
 
 import {ILessons} from "../../../shared/models/lessons.model";
+import {selectOptions} from "../../../shared/models/selectOptions.model";
 import { actionTypes } from "./types";
 
 export const getLessonsData = () => ({
@@ -9,5 +10,10 @@ export const getLessonsData = () => ({
 
 export const getLessonsResponse = (payload:ILessons) => ({
   type: actionTypes.get_lessons_data_response,
+  payload
+});
+
+export const setSchoolsData = (payload:selectOptions[]) => ({
+  type: actionTypes.set_schools_data,
   payload
 });
