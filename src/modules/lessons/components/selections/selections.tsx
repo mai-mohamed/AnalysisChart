@@ -24,7 +24,7 @@ const Selections: FC<IProps> = (props: IProps) => {
     setCampOptions(strArrToObjArr(campSet));
 
     const schoolSet: string[] = getUniqueSet(props.data, "school");
-    setSchoolOptions(strArrToObjArr(schoolSet));
+    setSchoolOptions([{label:"All",value:"All"},...strArrToObjArr(schoolSet)]);
   }, [props.data]);
 
   return (
