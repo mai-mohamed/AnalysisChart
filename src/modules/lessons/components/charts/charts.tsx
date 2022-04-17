@@ -1,5 +1,5 @@
-import { FC, useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
+import { FC, useEffect, useRef, useState } from "react";
+import { Line ,getElementAtEvent} from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -38,7 +38,7 @@ type IDataSet = {
   borderColor: string;
 };
 const Charts: FC<IProps> = (props: IProps) => {
-  const [lessons, setLessons] = useState<any>();
+  const chartRef = useRef<any>();
   const [dataSets, setDataSets] = useState<IDataSet[]>([]);
   useEffect(() => {
     const yAxis = props.data.filter((row) => {
@@ -52,10 +52,15 @@ const Charts: FC<IProps> = (props: IProps) => {
     const lessonsArr = yAxis.map((row) => {
       return row.lessons;
     });
-    setLessons(lessonsArr);
     getDataSets(lessonsArr);
   }, [props.data, props.school, props.camp, props.country]);
   
+  const onChartClick = (event:any) => {
+    const clickedPoint=getElementAtEvent(chartRef.current, event)
+   const clickedSchool= dataSets[clickedPoint[0]?.datasetIndex]?.label
+   const clickedLesson=clickedPoint[0]?.element.x
+  }
+
   const getDataSets = (lessonsArr:any) => {
     if (typeof props.school == "string") {
       setDataSets([
@@ -112,8 +117,10 @@ const Charts: FC<IProps> = (props: IProps) => {
   return (
     <div>
       <Line
+       ref={chartRef}
         //@ts-ignore
         data={chartData}
+        onClick={onChartClick}
       />
     </div>
   );
