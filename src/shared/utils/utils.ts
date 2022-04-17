@@ -13,3 +13,9 @@ export const strArrToObjArr = (strArr: string[]) => {
       ),
     ];
   };
+
+  export const getURLParams=(paramName:string)=> {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    return urlParams.get(paramName);
+  }
