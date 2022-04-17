@@ -8,7 +8,7 @@ import Selections from "./components/selections/selections";
 import { getLessonsData } from "./redux/actions";
 
 const Lessons: FC = () => {
-  const [selectedSchool, setSelectedSchool] = useState<string>();
+  const [selectedSchool, setSelectedSchool] = useState<string|string[]>();
   const [selectedCamp, setSelectedCamp] = useState<string>();
   const [selectedCountry, setSelectedCountry] = useState<string>();
   const dispatch = useDispatch();
@@ -25,7 +25,9 @@ const Lessons: FC = () => {
   const handleCountryChange = (e: selectOptions) => {
     setSelectedCountry(e.label);
   };
-
+const handleCheckBoxChange=(selectedSchools:string[])=>{
+  setSelectedSchool(selectedSchools)
+}
   return (
     <div className="lessons-wrapper">
       <Selections //@ts-ignore
@@ -35,7 +37,7 @@ const Lessons: FC = () => {
         handleCountryChange={handleCountryChange}
       />
       <div className="row">
-        <div className={selectedSchool == "All" ? "col-8" : "col-12"}>
+        <div className={(selectedSchool == "All" ||typeof(selectedSchool)=="object")  ? "col-8" : "col-12"}>
           <Charts
             //@ts-ignore
             data={lessons.lessonsData}
@@ -44,9 +46,9 @@ const Lessons: FC = () => {
             country={selectedCountry}
           />
         </div>
-        <div className={selectedSchool == "All" ? "col-4" : ""}>
-          <AllSchoolsSection />
-        </div>
+       {(selectedSchool == "All" ||typeof(selectedSchool)=="object")&&<div className="col-4" >
+          <AllSchoolsSection  handleCheckBoxChange={handleCheckBoxChange}/>
+        </div>}
       </div>
     </div>
   );
