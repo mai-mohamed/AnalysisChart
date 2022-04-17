@@ -7,7 +7,7 @@ function RouterComponent() {
     <div className="App">
       <Routes>
         <Route path="/" element={ <App/> } />
-        <Route path="details" element={ <LessonDetails/> } />
+        <Route path="/details" element={ <LessonDetails/> } />
       </Routes>
     </div>
   )
